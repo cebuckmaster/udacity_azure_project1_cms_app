@@ -83,8 +83,7 @@ def authorized():
     if request.args.get('state') != session.get("state"):
         return redirect(url_for("home"))  # No-OP. Goes back to Index page
     if "error" in request.args:  # Authentication/Authorization failure
-        print('Authentication/Authorization Failure ->'+request.args)
-        app.logger.warning('Authentication/Authorization Failure Result->'+request.args)
+        app.logger.error('Authentication/Authorization Failure Result->')
         return render_template("auth_error.html", result=request.args)
     if request.args.get('code'):
         cache = _load_cache()
@@ -95,11 +94,10 @@ def authorized():
             redirect_uri=url_for('authorized', _external=True, _scheme='https')
         )
         if "error" in result:
-            print('Sign in with Microsoft Error ->'+result)
-            app.logger.warning('Sign in with Microsoft Error ->'+result)
+            app.logger.error('Sign in with Microsoft Error')
             return render_template("auth_error.html", result=result)
         session["user"] = result.get("id_token_claims")
-        app.logger.info('User signed in successfully -> '+ session["user"].get("preferred_username"))
+        app.logger.warning('User signed in successfully -> '+ session["user"].get("preferred_username"))
         # Note: In a real app, we'd use the 'name' property from session["user"] below
         # Here, we'll use the admin username for anyone who is authenticated by MS
         user = User.query.filter_by(username="admin").first()
