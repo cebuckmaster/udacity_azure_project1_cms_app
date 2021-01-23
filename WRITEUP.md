@@ -1,4 +1,4 @@
-# Write-up Template
+# Write-up
 
 ### Analyze, choose, and justify the appropriate resource option for deploying the app.
 #
@@ -12,9 +12,16 @@ at an additonal cost.  Having control over the operating system comes with a dow
 
 A Azure Apps service removes all requirements of maintaining a virtual machine and allows the user/developer to focues on application and data development. App Services range in price based on size.   App Services has autoscaling as a built in service and has integrated load balancer.  Apps Servers can have integrated workflow into a code repository or Azure Dev Ops for continues integration and continues deployment of application changes.  
 
+#
+## Choice for CSM App
+
 For the CMS Article application I am choosing Azure App Services to quickly deply this python based web application.  Since will will be the most cost effective and provide the reliabilty and scaling I might need as this application popularity increases.
 
+#
+
+## Change from App Service to VM
+
 If the CMS Article application required 3rd party software or required a mix of Linux and Windows sytems then 
-using Virtual Machines would be a better choice for the application enviroment. 
+using Virtual Machines would be a better choice for the application enviroment.  Also if you need to have more control over the operating system for special configurations a VM would be a better choice. 
 
 
